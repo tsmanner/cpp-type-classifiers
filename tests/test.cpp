@@ -4,6 +4,8 @@
 
 #include "type_classifiers.h"
 
+using typing::Type;
+
 template <typename T>
 struct Int {
   static_assert(

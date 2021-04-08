@@ -3,6 +3,8 @@
 #include <type_traits>
 
 
+namespace typing {
+
 //
 // Type
 //
@@ -14,6 +16,9 @@ struct Type {
   constexpr Type<T>() {}
 
 };
+
+
+namespace detail {
 
 
 //
@@ -237,6 +242,9 @@ struct TypeEQUAL<TypeAND<TLL, TLR>, TypeAND<TRL, TRR>> {
 };
 
 
+}  // namespace typing::detail
+
+
 //
 // EQUAL
 //
@@ -244,82 +252,82 @@ struct TypeEQUAL<TypeAND<TLL, TLR>, TypeAND<TRL, TRR>> {
 // Type Type
 template <typename TL, typename TR>
 constexpr auto operator==(Type<TL>, Type<TR>) {
-  return TypeEQUAL<Type<TL>, Type<TR>>();
+  return detail::TypeEQUAL<Type<TL>, Type<TR>>();
 }
 // Type TypeNOT
 template <typename TL, typename TR>
-constexpr auto operator==(Type<TL>, TypeNOT<TR>) {
-  return TypeEQUAL<Type<TL>, TypeNOT<TR>>();
+constexpr auto operator==(Type<TL>, detail::TypeNOT<TR>) {
+  return detail::TypeEQUAL<Type<TL>, detail::TypeNOT<TR>>();
 }
 // Type TypeOR
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator==(Type<TL>, TypeOR<TRL, TRR>) {
-  return TypeEQUAL<Type<TL>, TypeOR<TRL, TRR>>();
+constexpr auto operator==(Type<TL>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeEQUAL<Type<TL>, detail::TypeOR<TRL, TRR>>();
 }
 // Type TypeAND
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator==(Type<TL>, TypeAND<TRL, TRR>) {
-  return TypeEQUAL<Type<TL>, TypeAND<TRL, TRR>>();
+constexpr auto operator==(Type<TL>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeEQUAL<Type<TL>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeNOT Type
 template <typename TL, typename TR>
-constexpr auto operator==(TypeNOT<TL>, Type<TR>) {
-  return TypeEQUAL<TypeNOT<TL>, Type<TR>>();
+constexpr auto operator==(detail::TypeNOT<TL>, Type<TR>) {
+  return detail::TypeEQUAL<detail::TypeNOT<TL>, Type<TR>>();
 }
 // TypeNOT TypeNOT
 template <typename TL, typename TR>
-constexpr auto operator==(TypeNOT<TL>, TypeNOT<TR>) {
-  return TypeEQUAL<TypeNOT<TL>, TypeNOT<TR>>();
+constexpr auto operator==(detail::TypeNOT<TL>, detail::TypeNOT<TR>) {
+  return detail::TypeEQUAL<detail::TypeNOT<TL>, detail::TypeNOT<TR>>();
 }
 // TypeNOT TypeOR
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator==(TypeNOT<TL>, TypeOR<TRL, TRR>) {
-  return TypeEQUAL<TypeNOT<TL>, TypeOR<TRL, TRR>>();
+constexpr auto operator==(detail::TypeNOT<TL>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeEQUAL<detail::TypeNOT<TL>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeNOT TypeAND
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator==(TypeNOT<TL>, TypeAND<TRL, TRR>) {
-  return TypeEQUAL<TypeNOT<TL>, TypeAND<TRL, TRR>>();
+constexpr auto operator==(detail::TypeNOT<TL>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeEQUAL<detail::TypeNOT<TL>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeOR Type
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator==(TypeOR<TLL, TLR>, Type<TR>) {
-  return TypeEQUAL<TypeOR<TLL, TLR>, Type<TR>>();
+constexpr auto operator==(detail::TypeOR<TLL, TLR>, Type<TR>) {
+  return detail::TypeEQUAL<detail::TypeOR<TLL, TLR>, Type<TR>>();
 }
 // TypeOR TypeNOT
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator==(TypeOR<TLL, TLR>, TypeNOT<TR>) {
-  return TypeEQUAL<TypeOR<TLL, TLR>, TypeNOT<TR>>();
+constexpr auto operator==(detail::TypeOR<TLL, TLR>, detail::TypeNOT<TR>) {
+  return detail::TypeEQUAL<detail::TypeOR<TLL, TLR>, detail::TypeNOT<TR>>();
 }
 // TypeOR TypeOR
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator==(TypeOR<TLL, TLR>, TypeOR<TRL, TRR>) {
-  return TypeEQUAL<TypeOR<TLL, TLR>, TypeOR<TRL, TRR>>();
+constexpr auto operator==(detail::TypeOR<TLL, TLR>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeEQUAL<detail::TypeOR<TLL, TLR>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeOR TypeAND
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator==(TypeOR<TLL, TLR>, TypeAND<TRL, TRR>) {
-  return TypeEQUAL<TypeOR<TLL, TLR>, TypeAND<TRL, TRR>>();
+constexpr auto operator==(detail::TypeOR<TLL, TLR>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeEQUAL<detail::TypeOR<TLL, TLR>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeAND Type
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator==(TypeAND<TLL, TLR>, Type<TR>) {
-  return TypeEQUAL<TypeAND<TLL, TLR>, Type<TR>>();
+constexpr auto operator==(detail::TypeAND<TLL, TLR>, Type<TR>) {
+  return detail::TypeEQUAL<detail::TypeAND<TLL, TLR>, Type<TR>>();
 }
 // TypeAND TypeNOT
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator==(TypeAND<TLL, TLR>, TypeNOT<TR>) {
-  return TypeEQUAL<TypeAND<TLL, TLR>, TypeNOT<TR>>();
+constexpr auto operator==(detail::TypeAND<TLL, TLR>, detail::TypeNOT<TR>) {
+  return detail::TypeEQUAL<detail::TypeAND<TLL, TLR>, detail::TypeNOT<TR>>();
 }
 // TypeAND TypeOR
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator==(TypeAND<TLL, TLR>, TypeOR<TRL, TRR>) {
-  return TypeEQUAL<TypeAND<TLL, TLR>, TypeOR<TRL, TRR>>();
+constexpr auto operator==(detail::TypeAND<TLL, TLR>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeEQUAL<detail::TypeAND<TLL, TLR>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeAND TypeAND
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator==(TypeAND<TLL, TLR>, TypeAND<TRL, TRR>) {
-  return TypeEQUAL<TypeAND<TLL, TLR>, TypeAND<TRL, TRR>>();
+constexpr auto operator==(detail::TypeAND<TLL, TLR>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeEQUAL<detail::TypeAND<TLL, TLR>, detail::TypeAND<TRL, TRR>>();
 }
 
 
@@ -330,82 +338,82 @@ constexpr auto operator==(TypeAND<TLL, TLR>, TypeAND<TRL, TRR>) {
 // Type Type
 template <typename TL, typename TR>
 constexpr auto operator!=(Type<TL>, Type<TR>) {
-  return !TypeEQUAL<Type<TL>, Type<TR>>();
+  return !detail::TypeEQUAL<Type<TL>, Type<TR>>();
 }
 // Type TypeNOT
 template <typename TL, typename TR>
-constexpr auto operator!=(Type<TL>, TypeNOT<TR>) {
-  return !TypeEQUAL<Type<TL>, TypeNOT<TR>>();
+constexpr auto operator!=(Type<TL>, detail::TypeNOT<TR>) {
+  return !detail::TypeEQUAL<Type<TL>, detail::TypeNOT<TR>>();
 }
 // Type TypeOR
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator!=(Type<TL>, TypeOR<TRL, TRR>) {
-  return !TypeEQUAL<Type<TL>, TypeOR<TRL, TRR>>();
+constexpr auto operator!=(Type<TL>, detail::TypeOR<TRL, TRR>) {
+  return !detail::TypeEQUAL<Type<TL>, detail::TypeOR<TRL, TRR>>();
 }
 // Type TypeAND
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator!=(Type<TL>, TypeAND<TRL, TRR>) {
-  return !TypeEQUAL<Type<TL>, TypeAND<TRL, TRR>>();
+constexpr auto operator!=(Type<TL>, detail::TypeAND<TRL, TRR>) {
+  return !detail::TypeEQUAL<Type<TL>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeNOT Type
 template <typename TL, typename TR>
-constexpr auto operator!=(TypeNOT<TL>, Type<TR>) {
-  return !TypeEQUAL<TypeNOT<TL>, Type<TR>>();
+constexpr auto operator!=(detail::TypeNOT<TL>, Type<TR>) {
+  return !detail::TypeEQUAL<detail::TypeNOT<TL>, Type<TR>>();
 }
 // TypeNOT TypeNOT
 template <typename TL, typename TR>
-constexpr auto operator!=(TypeNOT<TL>, TypeNOT<TR>) {
-  return !TypeEQUAL<TypeNOT<TL>, TypeNOT<TR>>();
+constexpr auto operator!=(detail::TypeNOT<TL>, detail::TypeNOT<TR>) {
+  return !detail::TypeEQUAL<detail::TypeNOT<TL>, detail::TypeNOT<TR>>();
 }
 // TypeNOT TypeOR
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator!=(TypeNOT<TL>, TypeOR<TRL, TRR>) {
-  return !TypeEQUAL<TypeNOT<TL>, TypeOR<TRL, TRR>>();
+constexpr auto operator!=(detail::TypeNOT<TL>, detail::TypeOR<TRL, TRR>) {
+  return !detail::TypeEQUAL<detail::TypeNOT<TL>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeNOT TypeAND
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator!=(TypeNOT<TL>, TypeAND<TRL, TRR>) {
-  return !TypeEQUAL<TypeNOT<TL>, TypeAND<TRL, TRR>>();
+constexpr auto operator!=(detail::TypeNOT<TL>, detail::TypeAND<TRL, TRR>) {
+  return !detail::TypeEQUAL<detail::TypeNOT<TL>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeOR Type
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator!=(TypeOR<TLL, TLR>, Type<TR>) {
-  return !TypeEQUAL<TypeOR<TLL, TLR>, Type<TR>>();
+constexpr auto operator!=(detail::TypeOR<TLL, TLR>, Type<TR>) {
+  return !detail::TypeEQUAL<detail::TypeOR<TLL, TLR>, Type<TR>>();
 }
 // TypeOR TypeNOT
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator!=(TypeOR<TLL, TLR>, TypeNOT<TR>) {
-  return !TypeEQUAL<TypeOR<TLL, TLR>, TypeNOT<TR>>();
+constexpr auto operator!=(detail::TypeOR<TLL, TLR>, detail::TypeNOT<TR>) {
+  return !detail::TypeEQUAL<detail::TypeOR<TLL, TLR>, detail::TypeNOT<TR>>();
 }
 // TypeOR TypeOR
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator!=(TypeOR<TLL, TLR>, TypeOR<TRL, TRR>) {
-  return !TypeEQUAL<TypeOR<TLL, TLR>, TypeOR<TRL, TRR>>();
+constexpr auto operator!=(detail::TypeOR<TLL, TLR>, detail::TypeOR<TRL, TRR>) {
+  return !detail::TypeEQUAL<detail::TypeOR<TLL, TLR>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeOR TypeAND
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator!=(TypeOR<TLL, TLR>, TypeAND<TRL, TRR>) {
-  return !TypeEQUAL<TypeOR<TLL, TLR>, TypeAND<TRL, TRR>>();
+constexpr auto operator!=(detail::TypeOR<TLL, TLR>, detail::TypeAND<TRL, TRR>) {
+  return !detail::TypeEQUAL<detail::TypeOR<TLL, TLR>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeAND Type
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator!=(TypeAND<TLL, TLR>, Type<TR>) {
-  return !TypeEQUAL<TypeAND<TLL, TLR>, Type<TR>>();
+constexpr auto operator!=(detail::TypeAND<TLL, TLR>, Type<TR>) {
+  return !detail::TypeEQUAL<detail::TypeAND<TLL, TLR>, Type<TR>>();
 }
 // TypeAND TypeNOT
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator!=(TypeAND<TLL, TLR>, TypeNOT<TR>) {
-  return !TypeEQUAL<TypeAND<TLL, TLR>, TypeNOT<TR>>();
+constexpr auto operator!=(detail::TypeAND<TLL, TLR>, detail::TypeNOT<TR>) {
+  return !detail::TypeEQUAL<detail::TypeAND<TLL, TLR>, detail::TypeNOT<TR>>();
 }
 // TypeAND TypeOR
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator!=(TypeAND<TLL, TLR>, TypeOR<TRL, TRR>) {
-  return !TypeEQUAL<TypeAND<TLL, TLR>, TypeOR<TRL, TRR>>();
+constexpr auto operator!=(detail::TypeAND<TLL, TLR>, detail::TypeOR<TRL, TRR>) {
+  return !detail::TypeEQUAL<detail::TypeAND<TLL, TLR>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeAND TypeAND
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator!=(TypeAND<TLL, TLR>, TypeAND<TRL, TRR>) {
-  return !TypeEQUAL<TypeAND<TLL, TLR>, TypeAND<TRL, TRR>>();
+constexpr auto operator!=(detail::TypeAND<TLL, TLR>, detail::TypeAND<TRL, TRR>) {
+  return !detail::TypeEQUAL<detail::TypeAND<TLL, TLR>, detail::TypeAND<TRL, TRR>>();
 }
 
 
@@ -416,27 +424,27 @@ constexpr auto operator!=(TypeAND<TLL, TLR>, TypeAND<TRL, TRR>) {
 // Type
 template <typename T>
 constexpr auto operator!(Type<T>) {
-  return TypeNOT<T>();
+  return detail::TypeNOT<Type<T>>();
 }
 // TypeNOT
 template <typename T>
-constexpr auto operator!(TypeNOT<T>) {
+constexpr auto operator!(detail::TypeNOT<T>) {
   return T();
 }
 // TypeEQUAL
 template <typename TL, typename TR>
-constexpr auto operator!(TypeEQUAL<TL, TR>) {
-  return TypeNOT<TypeEQUAL<TL, TR>>();
+constexpr auto operator!(detail::TypeEQUAL<TL, TR>) {
+  return detail::TypeNOT<detail::TypeEQUAL<TL, TR>>();
 }
 // TypeOR
 template <typename TL, typename TR>
-constexpr auto operator!(TypeOR<TL, TR>) {
-  return TypeNOT<TypeOR<TL, TR>>();
+constexpr auto operator!(detail::TypeOR<TL, TR>) {
+  return detail::TypeNOT<detail::TypeOR<TL, TR>>();
 }
 // TypeAND
 template <typename TL, typename TR>
-constexpr auto operator!(TypeAND<TL, TR>) {
-  return TypeNOT<TypeAND<TL, TR>>();
+constexpr auto operator!(detail::TypeAND<TL, TR>) {
+  return detail::TypeNOT<detail::TypeAND<TL, TR>>();
 }
 
 
@@ -447,77 +455,77 @@ constexpr auto operator!(TypeAND<TL, TR>) {
 // Type Type
 template <typename TL, typename TR>
 constexpr auto operator||(Type<TL>, Type<TR>) {
-  return TypeOR<Type<TL>, Type<TR>>();
+  return detail::TypeOR<Type<TL>, Type<TR>>();
 }
 // Type TypeNOT
 template <typename TL, typename TR>
-constexpr auto operator||(Type<TL>, TypeNOT<TR>) {
-  return TypeOR<Type<TL>, TypeNOT<TR>>();
+constexpr auto operator||(Type<TL>, detail::TypeNOT<TR>) {
+  return detail::TypeOR<Type<TL>, detail::TypeNOT<TR>>();
 }
 // Type TypeOR
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator||(Type<TL>, TypeOR<TRL, TRR>) {
-  return TypeOR<Type<TL>, TypeOR<TRL, TRR>>();
+constexpr auto operator||(Type<TL>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeOR<Type<TL>, detail::TypeOR<TRL, TRR>>();
 }
 // Type TypeAND
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator||(Type<TL>, TypeAND<TRL, TRR>) {
-  return TypeOR<Type<TL>, TypeAND<TRL, TRR>>();
+constexpr auto operator||(Type<TL>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeOR<Type<TL>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeNOT Type
 template <typename TL, typename TR>
-constexpr auto operator||(TypeNOT<TL>, Type<TR>) {
-  return TypeOR<TypeNOT<TL>, Type<TR>>();
+constexpr auto operator||(detail::TypeNOT<TL>, Type<TR>) {
+  return detail::TypeOR<detail::TypeNOT<TL>, Type<TR>>();
 }
 // TypeNOT TypeNOT
 template <typename TL, typename TR>
-constexpr auto operator||(TypeNOT<TL>, TypeNOT<TR>) {
-  return TypeOR<TypeNOT<TL>, TypeNOT<TR>>();
+constexpr auto operator||(detail::TypeNOT<TL>, detail::TypeNOT<TR>) {
+  return detail::TypeOR<detail::TypeNOT<TL>, detail::TypeNOT<TR>>();
 }
 // TypeNOT TypeOR
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator||(TypeNOT<TL>, TypeOR<TRL, TRR>) {
-  return TypeOR<TypeNOT<TL>, TypeOR<TRL, TRR>>();
+constexpr auto operator||(detail::TypeNOT<TL>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeOR<detail::TypeNOT<TL>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeNOT TypeAND
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator||(TypeNOT<TL>, TypeAND<TRL, TRR>) {
-  return TypeOR<TypeNOT<TL>, TypeAND<TRL, TRR>>();
+constexpr auto operator||(detail::TypeNOT<TL>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeOR<detail::TypeNOT<TL>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeOR Type
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator||(TypeOR<TLL, TLR>, Type<TR>) {
-  return TypeOR<TypeOR<TLL, TLR>, Type<TR>>();
+constexpr auto operator||(detail::TypeOR<TLL, TLR>, Type<TR>) {
+  return detail::TypeOR<detail::TypeOR<TLL, TLR>, Type<TR>>();
 }
 // TypeOR TypeNOT
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator||(TypeOR<TLL, TLR>, TypeNOT<TR>) {
-  return TypeOR<TypeOR<TLL, TLR>, TypeNOT<TR>>();
+constexpr auto operator||(detail::TypeOR<TLL, TLR>, detail::TypeNOT<TR>) {
+  return detail::TypeOR<detail::TypeOR<TLL, TLR>, detail::TypeNOT<TR>>();
 }
 // TypeOR TypeOR
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator||(TypeOR<TLL, TLR>, TypeOR<TRL, TRR>) {
-  return TypeOR<TypeOR<TLL, TLR>, TypeOR<TRL, TRR>>();
+constexpr auto operator||(detail::TypeOR<TLL, TLR>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeOR<detail::TypeOR<TLL, TLR>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeOR TypeAND
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator||(TypeOR<TLL, TLR>, TypeAND<TRL, TRR>) {
-  return TypeOR<TypeOR<TLL, TLR>, TypeAND<TRL, TRR>>();
+constexpr auto operator||(detail::TypeOR<TLL, TLR>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeOR<detail::TypeOR<TLL, TLR>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeAND Type
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator||(TypeAND<TLL, TLR>, Type<TR>) {
-  return TypeOR<TypeAND<TLL, TLR>, Type<TR>>();
+constexpr auto operator||(detail::TypeAND<TLL, TLR>, Type<TR>) {
+  return detail::TypeOR<detail::TypeAND<TLL, TLR>, Type<TR>>();
 }
 // TypeAND TypeOR
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator||(TypeAND<TLL, TLR>, TypeOR<TRL, TRR>) {
-  return TypeOR<TypeAND<TLL, TLR>, TypeOR<TRL, TRR>>();
+constexpr auto operator||(detail::TypeAND<TLL, TLR>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeOR<detail::TypeAND<TLL, TLR>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeAND TypeAND
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator||(TypeAND<TLL, TLR>, TypeAND<TRL, TRR>) {
-  return TypeOR<TypeAND<TLL, TLR>, TypeAND<TRL, TRR>>();
+constexpr auto operator||(detail::TypeAND<TLL, TLR>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeOR<detail::TypeAND<TLL, TLR>, detail::TypeAND<TRL, TRR>>();
 }
 
 
@@ -528,81 +536,82 @@ constexpr auto operator||(TypeAND<TLL, TLR>, TypeAND<TRL, TRR>) {
 // Type Type
 template <typename TL, typename TR>
 constexpr auto operator&&(Type<TL>, Type<TR>) {
-  return TypeAND<Type<TL>, Type<TR>>();
+  return detail::TypeAND<Type<TL>, Type<TR>>();
 }
 // Type TypeNOT
 template <typename TL, typename TR>
-constexpr auto operator&&(Type<TL>, TypeNOT<TR>) {
-  return TypeAND<Type<TL>, TypeNOT<TR>>();
+constexpr auto operator&&(Type<TL>, detail::TypeNOT<TR>) {
+  return detail::TypeAND<Type<TL>, detail::TypeNOT<TR>>();
 }
 // Type TypeOR
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator&&(Type<TL>, TypeOR<TRL, TRR>) {
-  return TypeAND<Type<TL>, TypeOR<TRL, TRR>>();
+constexpr auto operator&&(Type<TL>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeAND<Type<TL>, detail::TypeOR<TRL, TRR>>();
 }
 // Type TypeAND
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator&&(Type<TL>, TypeAND<TRL, TRR>) {
-  return TypeAND<Type<TL>, TypeAND<TRL, TRR>>();
+constexpr auto operator&&(Type<TL>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeAND<Type<TL>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeNOT Type
 template <typename TL, typename TR>
-constexpr auto operator&&(TypeNOT<TL>, Type<TR>) {
-  return TypeAND<TypeNOT<TL>, Type<TR>>();
+constexpr auto operator&&(detail::TypeNOT<TL>, Type<TR>) {
+  return detail::TypeAND<detail::TypeNOT<TL>, Type<TR>>();
 }
 // TypeNOT TypeNOT
 template <typename TL, typename TR>
-constexpr auto operator&&(TypeNOT<TL>, TypeNOT<TR>) {
-  return TypeAND<TypeNOT<TL>, TypeNOT<TR>>();
+constexpr auto operator&&(detail::TypeNOT<TL>, detail::TypeNOT<TR>) {
+  return detail::TypeAND<detail::TypeNOT<TL>, detail::TypeNOT<TR>>();
 }
 // TypeNOT TypeOR
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator&&(TypeNOT<TL>, TypeOR<TRL, TRR>) {
-  return TypeAND<TypeNOT<TL>, TypeOR<TRL, TRR>>();
+constexpr auto operator&&(detail::TypeNOT<TL>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeAND<detail::TypeNOT<TL>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeNOT TypeAND
 template <typename TL, typename TRL, typename TRR>
-constexpr auto operator&&(TypeNOT<TL>, TypeAND<TRL, TRR>) {
-  return TypeAND<TypeNOT<TL>, TypeAND<TRL, TRR>>();
+constexpr auto operator&&(detail::TypeNOT<TL>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeAND<detail::TypeNOT<TL>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeOR Type
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator&&(TypeOR<TLL, TLR>, Type<TR>) {
-  return TypeAND<TypeOR<TLL, TLR>, Type<TR>>();
+constexpr auto operator&&(detail::TypeOR<TLL, TLR>, Type<TR>) {
+  return detail::TypeAND<detail::TypeOR<TLL, TLR>, Type<TR>>();
 }
 // TypeOR TypeNOT
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator&&(TypeOR<TLL, TLR>, TypeNOT<TR>) {
-  return TypeAND<TypeOR<TLL, TLR>, TypeNOT<TR>>();
+constexpr auto operator&&(detail::TypeOR<TLL, TLR>, detail::TypeNOT<TR>) {
+  return detail::TypeAND<detail::TypeOR<TLL, TLR>, detail::TypeNOT<TR>>();
 }
 // TypeOR TypeOR
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator&&(TypeOR<TLL, TLR>, TypeOR<TRL, TRR>) {
-  return TypeAND<TypeOR<TLL, TLR>, TypeOR<TRL, TRR>>();
+constexpr auto operator&&(detail::TypeOR<TLL, TLR>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeAND<detail::TypeOR<TLL, TLR>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeOR TypeAND
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator&&(TypeOR<TLL, TLR>, TypeAND<TRL, TRR>) {
-  return TypeAND<TypeOR<TLL, TLR>, TypeAND<TRL, TRR>>();
+constexpr auto operator&&(detail::TypeOR<TLL, TLR>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeAND<detail::TypeOR<TLL, TLR>, detail::TypeAND<TRL, TRR>>();
 }
 // TypeAND Type
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator&&(TypeAND<TLL, TLR>, Type<TR>) {
-  return TypeAND<TypeAND<TLL, TLR>, Type<TR>>();
+constexpr auto operator&&(detail::TypeAND<TLL, TLR>, Type<TR>) {
+  return detail::TypeAND<detail::TypeAND<TLL, TLR>, Type<TR>>();
 }
 // TypeAND TypeNOT
 template <typename TLL, typename TLR, typename TR>
-constexpr auto operator&&(TypeAND<TLL, TLR>, TypeNOT<TR>) {
-  return TypeAND<TypeAND<TLL, TLR>, TypeNOT<TR>>();
+constexpr auto operator&&(detail::TypeAND<TLL, TLR>, detail::TypeNOT<TR>) {
+  return detail::TypeAND<detail::TypeAND<TLL, TLR>, detail::TypeNOT<TR>>();
 }
 // TypeAND TypeOR
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator&&(TypeAND<TLL, TLR>, TypeOR<TRL, TRR>) {
-  return TypeAND<TypeAND<TLL, TLR>, TypeOR<TRL, TRR>>();
+constexpr auto operator&&(detail::TypeAND<TLL, TLR>, detail::TypeOR<TRL, TRR>) {
+  return detail::TypeAND<detail::TypeAND<TLL, TLR>, detail::TypeOR<TRL, TRR>>();
 }
 // TypeAND TypeAND
 template <typename TLL, typename TLR, typename TRL, typename TRR>
-constexpr auto operator&&(TypeAND<TLL, TLR>, TypeAND<TRL, TRR>) {
-  return TypeAND<TypeAND<TLL, TLR>, TypeAND<TRL, TRR>>();
+constexpr auto operator&&(detail::TypeAND<TLL, TLR>, detail::TypeAND<TRL, TRR>) {
+  return detail::TypeAND<detail::TypeAND<TLL, TLR>, detail::TypeAND<TRL, TRR>>();
 }
 
+}  // namespace typing

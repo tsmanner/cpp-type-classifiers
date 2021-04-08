@@ -6,10 +6,12 @@
 
 using typing::Type;
 
+using SignedIntType = decltype(Type<int>() || Type<int8_t>() || Type<int16_t>() || Type<int32_t>() || Type<int64_t>());
+
 template <typename T>
 struct Int {
   static_assert(
-    Type<T>() == (Type<int>() || Type<int8_t>() || Type<int16_t>() || Type<int32_t>() || Type<int64_t>()),
+    Type<T>() == SignedIntType(),
     "Int template argument must be a signed `int` type"
   );
 };
@@ -23,10 +25,11 @@ struct IntPair {
 };
 
 template <typename T1, typename T2>
-typename std::enable_if<((Type<T1>() && Type<T2>()) == (Type<int>() || Type<int8_t>()))>::type
+typename std::enable_if<((Type<T1>() && Type<T2>()) == SignedIntType())>::type
 f() {
   std::cout << "f()\n";
 }
+
 
 int main() {
   static_assert(Type<int>() == (Type<int>() || Type<int8_t>()), "Ruh Roh");

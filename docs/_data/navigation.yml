@@ -1,0 +1,27 @@
+main:
+  - title: API Documentation
+    url: /docs-api/Overview/
+  - title: Code Documentation
+    url: /docs-code/Structure/
+
+#
+# Docs
+#
+
+docs-api:
+  - title: API Documentation
+    children:
+      - title: Overview
+        url: /docs-api/Overview/
+      - title: Taxonomy
+        url: /docs-api/Taxonomy/
+      - title: Nodes
+        url: /docs-api/Nodes/
+      - title: Edges
+        url: /docs-api/Edges/
+
+docs-code:
+  - title: Code Documentation
+    children:
+      - title: Structure
+        url: /docs-code/Structure/

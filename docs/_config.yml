@@ -1,0 +1,64 @@
+# Theme Selection
+remote_theme: tsmanner/minimal-mistakes
+plugins:
+  - jekyll-include-cache
+
+# Page Meta
+minimal_mistakes_skin: "dark"
+locale: "en-US"
+timezone: America/New_York
+
+# Header/Footer
+title: Software Design and Hardware Verification
+subtitle: My personal blog about the relationship between software design and hardware verification.
+name: Tom Manner
+
+
+# Page Features
+search: true
+paginate: 5
+paginate_path: /page:num/
+
+# Page Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      author_profile: true
+      show_date: true
+  - scope:
+      path: ""
+    values:
+      classes:
+        - wide
+      layout: single
+      sidebar:
+        nav:
+          - quick_links
+          - code
+  - scope:
+      path: fusion_codev
+    values:
+      layout: single
+      show_date: true
+      sidebar:
+        nav: fusion_codev
+
+# Page Author
+author: Tom Manner
+
+# Pages
+include: ["_pages"]
+
+# Collections
+collections:
+  fusion_codev:
+    output: true
+    permalink: /:collection/:path/
+  snippets:
+    output: true
+    permalink: /:collection/:path/
+  utilities:
+    output: true
+    permalink: /:collection/:path/

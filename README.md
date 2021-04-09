@@ -5,7 +5,7 @@ A set of compile-time type classifiers for C++, meant to improve the usability o
 
 ## Getting Started
 
-Clone this repository or download <a href="" download="raw/main/include/type_classifiers.h">type_classifiers.h</a>, and put it in your include path.
+Clone this repository or download [type_classifiers.h](./include/type_classifiers.h), and put it in your include path.
 
 To start classifying your types, start by wrapping the types you care about in `typing::Type` so they can be composed into classifications.  Next, start combining those `Type`s into the classifications you want.  For example, the following is a classification that includes all signed integer types:
 

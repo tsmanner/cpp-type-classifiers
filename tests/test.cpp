@@ -48,6 +48,8 @@ int main() {
   Int<int8_t> i8;
 
   IntPair<int, int8_t> i_i8;
+  // If uncommented, the next line fails to compile with
+  // assertion that uint8_t is not a signed int type
   // IntPair<int, uint8_t> i_u8;
 
   f<int, int8_t>();

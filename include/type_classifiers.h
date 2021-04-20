@@ -44,7 +44,7 @@ struct TypeNOT<TypeEQUAL<TL, TR>> {
 
   constexpr TypeNOT() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return !static_cast<bool>(type());
   }
 };
@@ -80,7 +80,7 @@ struct TypeEQUAL<Type<TL>, Type<TR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return std::is_same<typename type_left::type, typename type_right::type>::value;
   }
 };
@@ -94,7 +94,7 @@ struct TypeEQUAL<Type<TL>, TypeNOT<TR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return !static_cast<bool>(type_left() == typename type_right::type());
   }
 };
@@ -108,7 +108,7 @@ struct TypeEQUAL<Type<TL>, TypeOR<TRL, TRR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return static_cast<bool>(type_left() == typename type_right::type_left())
         || static_cast<bool>(type_left() == typename type_right::type_right());
   }
@@ -122,7 +122,7 @@ struct TypeEQUAL<Type<TL>, TypeAND<TRL, TRR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return static_cast<bool>(type_left() == typename type_right::type_left())
         && static_cast<bool>(type_left() == typename type_right::type_right());
   }
@@ -136,7 +136,7 @@ struct TypeEQUAL<TypeOR<TLL, TLR>, Type<TR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return static_cast<bool>(typename type_left::type_left() == type_right())
         || static_cast<bool>(typename type_left::type_right() == type_right());
   }
@@ -150,7 +150,7 @@ struct TypeEQUAL<TypeOR<TLL, TLR>, TypeNOT<TR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return static_cast<bool>(typename type_left::type_left() == type_right())
         || static_cast<bool>(typename type_left::type_right() == type_right());
   }
@@ -165,7 +165,7 @@ struct TypeEQUAL<TypeOR<TLL, TLR>, TypeOR<TRL, TRR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return static_cast<bool>(typename type_left::type_left() == type_right())
         || static_cast<bool>(typename type_left::type_right() == type_right());
   }
@@ -179,7 +179,7 @@ struct TypeEQUAL<TypeOR<TLL, TLR>, TypeAND<TRL, TRR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return static_cast<bool>(typename type_left::type_left() == type_right())
         || static_cast<bool>(typename type_left::type_right() == type_right());
   }
@@ -193,7 +193,7 @@ struct TypeEQUAL<TypeAND<TLL, TLR>, Type<TR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return static_cast<bool>(typename type_left::type_left() == type_right())
         && static_cast<bool>(typename type_left::type_right() == type_right());
   }
@@ -207,7 +207,7 @@ struct TypeEQUAL<TypeAND<TLL, TLR>, TypeNOT<TR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return static_cast<bool>(typename type_left::type_left() == type_right())
         && static_cast<bool>(typename type_left::type_right() == type_right());
   }
@@ -221,7 +221,7 @@ struct TypeEQUAL<TypeAND<TLL, TLR>, TypeOR<TRL, TRR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return static_cast<bool>(typename type_left::type_left() == type_right())
         && static_cast<bool>(typename type_left::type_right() == type_right());
   }
@@ -235,7 +235,7 @@ struct TypeEQUAL<TypeAND<TLL, TLR>, TypeAND<TRL, TRR>> {
 
   constexpr TypeEQUAL() {}
 
-  constexpr operator bool() {
+  constexpr operator bool() const {
     return static_cast<bool>(typename type_left::type_left() == type_right())
         && static_cast<bool>(typename type_left::type_right() == type_right());
   }

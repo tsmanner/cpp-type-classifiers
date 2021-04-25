@@ -6,6 +6,14 @@
 namespace typing {
 
 //
+// Any
+//   meta-class that will compare
+//   favorably with all types
+//
+
+struct Any {};
+
+//
 // Type
 //
 
@@ -82,6 +90,32 @@ struct TypeEQUAL<Type<TL>, Type<TR>> {
 
   constexpr operator bool() const {
     return std::is_same<typename type_left::type, typename type_right::type>::value;
+  }
+};
+
+
+template <typename T>
+struct TypeEQUAL<Type<Any>, Type<T>> {
+  using type_left = Type<Any>;
+  using type_right = Type<T>;
+
+  constexpr TypeEQUAL() {}
+
+  constexpr operator bool() const {
+    return true;
+  }
+};
+
+
+template <typename T>
+struct TypeEQUAL<Type<T>, Type<Any>> {
+  using type_left = Type<T>;
+  using type_right = Type<Any>;
+
+  constexpr TypeEQUAL() {}
+
+  constexpr operator bool() const {
+    return true;
   }
 };
 

@@ -5,71 +5,71 @@ jobs:
   include:
     - name: clang11
       script:
-        - "nix run nixpkgs.clang_11 -c clang++ -o clang11.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.clang_11 -c clang++ -o clang11.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./clang11.out
         - rm ./clang11.out
     - name: clang10
       script:
-        - "nix run nixpkgs.clang_10 -c clang++ -o clang10.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.clang_10 -c clang++ -o clang10.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./clang10.out
         - rm ./clang10.out
     - name: clang9
       script:
-        - "nix run nixpkgs.clang_9 -c clang++ -o clang9.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.clang_9 -c clang++ -o clang9.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./clang9.out
         - rm ./clang9.out
     - name: clang8
       script:
-        - "nix run nixpkgs.clang_8 -c clang++ -o clang8.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.clang_8 -c clang++ -o clang8.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./clang8.out
         - rm ./clang8.out
     - name: clang7
       script:
-        - "nix run nixpkgs.clang_7 -c clang++ -o clang7.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.clang_7 -c clang++ -o clang7.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./clang7.out
         - rm ./clang7.out
     - name: clang6
       script:
-        - "nix run nixpkgs.clang_6 -c clang++ -o clang6.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.clang_6 -c clang++ -o clang6.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./clang6.out
         - rm ./clang6.out
     - name: clang5
       script:
-        - "nix run nixpkgs.clang_5 -c clang++ -o clang5.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.clang_5 -c clang++ -o clang5.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./clang5.out
         - rm ./clang5.out
     - name: gcc10
       script:
-        - "nix run nixpkgs.gcc10 -c g++ -o gcc10.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.gcc10 -c g++ -o gcc10.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./gcc10.out
         - rm ./gcc10.out
     - name: gcc9
       script:
-        - "nix run nixpkgs.gcc9 -c g++ -o gcc9.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.gcc9 -c g++ -o gcc9.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./gcc9.out
         - rm ./gcc9.out
     - name: gcc8
       script:
-        - "nix run nixpkgs.gcc8 -c g++ -o gcc8.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.gcc8 -c g++ -o gcc8.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./gcc8.out
         - rm ./gcc8.out
     - name: gcc7
       script:
-        - "nix run nixpkgs.gcc7 -c g++ -o gcc7.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.gcc7 -c g++ -o gcc7.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./gcc7.out
         - rm ./gcc7.out
     - name: gcc6
       script:
-        - "nix run nixpkgs.gcc6 -c g++ -o gcc6.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.gcc6 -c g++ -o gcc6.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./gcc6.out
         - rm ./gcc6.out
     - name: gcc49
       script:
-        - "nix run nixpkgs.gcc49 -c g++ -o gcc49.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.gcc49 -c g++ -o gcc49.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./gcc49.out
         - rm ./gcc49.out
     - name: gcc48
       script:
-        - "nix run nixpkgs.gcc48 -c g++ -o gcc48.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror tests/test_graph.cpp tests/test_Traversal.cpp tests/test_applicable.cpp tests/Main.cpp"
+        - "nix run nixpkgs.gcc48 -c g++ -o gcc48.out -std=c++11 -g -I./include -I./support/include -Wall -Wextra -Werror -Wno-unused-variable tests/test.cpp"
         - ./gcc48.out
         - rm ./gcc48.out

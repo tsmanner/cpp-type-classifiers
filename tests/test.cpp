@@ -47,7 +47,7 @@ int main() {
   static_assert(Type<int>() == (!Type<unsigned>() && !Type<uint8_t>()), "Ruh Roh");
 
   static_assert(!(Type<int>() != Type<int>()), "Ruh Roh");
-  // static_assert(!(Type<int>() == !Type<int>()), "Ruh Roh");
+  static_assert(!(Type<int>() == !Type<int>()), "Ruh Roh");
   static_assert((Type<unsigned>() == !Type<int>()), "Ruh Roh");
 
   static_assert((Type<int>() || Type<int8_t>()) != (Type<unsigned>() || Type<uint8_t>()), "Ruh Roh");
@@ -55,6 +55,10 @@ int main() {
   static_assert((Type<int>() || Type<int8_t>()) == (!Type<unsigned>() && !Type<uint8_t>()), "Ruh Roh");
 
   static_assert(Type<int>() == (!Type<unsigned>()), "Ruh Roh");
+  static_assert(Type<int>() == Type<typing::Any>(), "Ruh Roh");
+  static_assert(Type<int>() != Type<typing::None>(), "Ruh Roh");
+  static_assert(Type<int>() == !Type<typing::None>(), "Ruh Roh");
+  static_assert(!(Type<int>() == Type<typing::None>()), "Ruh Roh");
 
   using std::cout;
   cout << std::boolalpha;

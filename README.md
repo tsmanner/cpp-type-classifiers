@@ -64,3 +64,30 @@ func(T const &inT) {
   std::cout << "Either T1 or T2 is not a signed integer!\n";
 }
 ```
+
+## Template parameter pack
+
+To use this library with template parameter packs, you'll need the ability to fold operators through lists of `Type` instances.  A generic way of doing that looks like this:
+
+```cpp
+template <typename F, typename T1, typename T2>
+constexpr auto fold(F const &inF, T1 const &inT1, T2 const &inT2) {
+  return inF(inT1, inT2);
+};
+
+template <typename F, typename T1, typename T2, typename... Ts>
+constexpr auto fold(F const &inF, T1 const &inT1, T2 const &inT2, Ts const &...inTs) {
+  return inF(inT1, fold(inF, inT2, inTs...));
+};
+```
+
+This `fold` function can now be used with any of the operators defined by the stl in the `<functional>` header.  Let's revisit the example of checking for and unsigned types.  That could accomplished with this
+
+```cpp
+template <typename... Ts>
+struct TypeSet {
+  static constexpr auto valid_types = fold(std::logical_or<>(), typing::Types<Ts>()...);
+};
+
+using SignedIntType = decltype(TypeSet<int, int8_t, int16_t, int32_t, int64_t>::valid_types);
+```

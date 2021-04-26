@@ -39,10 +39,9 @@ template <typename...> struct TypeEQUAL;
 // NOT
 template <typename T>
 struct TypeNOT {
-  using type = Type<T>;
+  using type = T;
 
   constexpr TypeNOT<T>() {}
-  // constexpr operator!
 };
 
 // NOT Equal

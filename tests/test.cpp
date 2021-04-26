@@ -31,18 +31,40 @@ f() {
 }
 
 
+template <typename T>
+typename std::enable_if<(Type<T>() == !Type<int>())>::type
+g() {
+  std::cout << "g()\n";
+}
+
+
 int main() {
   static_assert(Type<int>() == (Type<int>() || Type<int8_t>()), "Ruh Roh");
   static_assert((Type<int>() || Type<int8_t>()) == (Type<int>() || Type<int8_t>()), "Ruh Roh");
 
   static_assert(Type<int>() != (Type<unsigned>() || Type<uint8_t>()), "Ruh Roh");
+  static_assert(Type<int>() == !(Type<unsigned>() || Type<uint8_t>()), "Ruh Roh");
+  static_assert(Type<int>() == (!Type<unsigned>() && !Type<uint8_t>()), "Ruh Roh");
+
+  static_assert(!(Type<int>() != Type<int>()), "Ruh Roh");
+  // static_assert(!(Type<int>() == !Type<int>()), "Ruh Roh");
+  static_assert((Type<unsigned>() == !Type<int>()), "Ruh Roh");
+
   static_assert((Type<int>() || Type<int8_t>()) != (Type<unsigned>() || Type<uint8_t>()), "Ruh Roh");
+  static_assert((Type<int>() || Type<int8_t>()) == !(Type<unsigned>() || Type<uint8_t>()), "Ruh Roh");
   static_assert((Type<int>() || Type<int8_t>()) == (!Type<unsigned>() && !Type<uint8_t>()), "Ruh Roh");
 
   static_assert(Type<int>() == (!Type<unsigned>()), "Ruh Roh");
 
   using std::cout;
   cout << std::boolalpha;
+
+  cout << (!(Type<int>() == !Type<int>())) << '\n';
+
+  // If uncommented, the next line fails to compile with
+  // "no matching function call" because `g` takes only `!int`
+  // g<int>();
+  g<unsigned>();
 
   Int<int> i;
   Int<int8_t> i8;
